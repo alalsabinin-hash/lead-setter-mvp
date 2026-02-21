@@ -3,125 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Автоматизация заявок в Воронеже | Цифровой Администратор</title>
+    <title>ИИ-Сеттер Воронеж | Цифровой Администратор для Бизнеса</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        html { scroll-behavior: smooth; }
         .chat-container { height: 400px; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        /* Плавное появление элементов */
+        .fade-in { animation: fadeIn 0.8s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
+<body class="bg-white text-slate-900 font-sans">
 
-    <section class="min-h-screen flex flex-col items-center justify-center px-6 py-20 text-center">
-        <div class="max-w-3xl">
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-                Хватит терять клиентов в <span class="text-blue-600">Воронеже</span> из-за долгого ответа
+    <header class="relative min-h-[80vh] flex items-center justify-center text-white py-20 px-6 text-center bg-cover bg-center" 
+            style="background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('bg.jpg');">
+        <div class="max-w-4xl mx-auto fade-in">
+            <span class="bg-blue-600 px-4 py-1 rounded-full text-sm font-bold mb-6 inline-block uppercase tracking-wider">Воронеж: Спец по автоматизации 🚀</span>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Хватит «сливать» до 30% заявок из-за медленных ответов
             </h1>
-            <p class="text-xl text-slate-600 mb-10 leading-relaxed">
-                Ставим "умный автоответчик" для вашего бизнеса. Отвечает за 1 минуту, квалифицирует лидов и записывает их сразу в CRM. 
-                Просто. Быстро. По-чесноку. 😎
+            <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+                Один пропущенный лид в вашей нише стоит от 5 000 до 30 000 ₽. Мы ставим робота, который ловит их всех 24/7.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="toggleChat()" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition shadow-lg">
-                    Попробовать демо-бота
-                </button>
-                <a href="#features" class="bg-white border border-slate-200 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition">
-                    Как это работает?
-                </a>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#demo" class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-2xl font-bold transition shadow-2xl transform hover:scale-105">Попробовать демо</a>
+                <a href="#offer" class="bg-white/10 hover:bg-white/20 text-white px-10 py-4 rounded-2xl font-bold transition border border-white/20 backdrop-blur-sm">Узнать условия</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-24 px-6 bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-black text-center mb-4 uppercase">Почему вы теряете деньги?</h2>
+            <p class="text-center text-slate-500 mb-16">Цифры на основе отзывов в 2ГИС и ПроДокторов по Воронежу</p>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 transition hover:shadow-xl">
+                    <div class="text-blue-600 mb-6 w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center"><i data-lucide="clock"></i></div>
+                    <h3 class="text-xl font-bold mb-4 uppercase tracking-tight">Долгий ответ</h3>
+                    <p class="text-slate-600 leading-relaxed">Клиент пишет в Северном или Отрадном, вы отвечаете через 30 минут — он уже записался к другому. Упущенная выручка: от 5 000 ₽.</p>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 transition hover:shadow-xl">
+                    <div class="text-blue-600 mb-6 w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center"><i data-lucide="user-x"></i></div>
+                    <h3 class="text-xl font-bold mb-4 uppercase tracking-tight">Человеческий фактор</h3>
+                    <p class="text-slate-600 leading-relaxed">Админ в "ДентТайм" или "Сове" не взял трубку или забыл перезвонить. Репутация падает, клиент уходит.</p>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 transition hover:shadow-xl">
+                    <div class="text-blue-600 mb-6 w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center"><i data-lucide="trending-down"></i></div>
+                    <h3 class="text-xl font-bold mb-4 uppercase tracking-tight">Слив бюджета</h3>
+                    <p class="text-slate-600 leading-relaxed">Вы платите за Авито и Директ, но 30% диалогов остаются без ответа. Это "деньги с пола", которые мы поднимем.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <div id="chat-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-        <div id="chat-window" class="hidden w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-slate-100 flex flex-col mb-4 overflow-hidden">
-            <div class="bg-blue-600 p-4 text-white flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                        <i data-lucide="bot"></i>
-                    </div>
-                    <div>
-                        <p class="font-bold leading-none">ИИ-Администратор</p>
-                        <p class="text-xs text-blue-100 mt-1">В сети • Отвечает мгновенно</p>
-                    </div>
-                </div>
-                <button onclick="toggleChat()" class="hover:bg-blue-500 p-1 rounded">
-                    <i data-lucide="x"></i>
-                </button>
+    <section class="py-24 px-6" id="demo">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <div>
+                <h2 class="text-4xl font-black mb-8 uppercase leading-none">Как работает <span class="text-blue-600">Цифровой Админ</span></h2>
+                <ul class="space-y-8">
+                    <li class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-black text-xl shadow-lg">1</div>
+                        <div>
+                            <p class="font-bold text-lg mb-1">Мгновенный подхват</p>
+                            <p class="text-slate-600 leading-relaxed text-sm">Бот отвечает в WhatsApp через 10 секунд. Клиент чувствует внимание и не уходит искать дальше.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-black text-xl shadow-lg">2</div>
+                        <div>
+                            <p class="font-bold text-lg mb-1">Умная квалификация</p>
+                            <p class="text-slate-600 leading-relaxed text-sm">Выясняет марку авто, тип услуги и бюджет. Никакой "воды", только нужные данные в JSON-формате.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-black text-xl shadow-lg">3</div>
+                        <div>
+                            <p class="font-bold text-lg mb-1">Авто-запись в CRM</p>
+                            <p class="text-slate-600 leading-relaxed text-sm">Данные падают в Bitrix24 или Google Таблицу. Менеджер подключается только на этапе записи.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
-
-            <div id="chat-messages" class="chat-container overflow-y-auto p-4 flex flex-col gap-3 text-sm bg-slate-50">
+            
+            <div class="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-100 overflow-hidden fade-in">
+                <div class="bg-slate-900 p-5 text-white flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center"><i data-lucide="bot" class="w-6 h-6"></i></div>
+                    <div>
+                        <p class="font-bold leading-none text-sm">Демо-Ассистент</p>
+                        <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Система активна • 24/7</p>
+                    </div>
                 </div>
+                <div id="chat-messages" class="chat-container overflow-y-auto p-6 bg-slate-50 flex flex-col gap-4 text-sm leading-relaxed"></div>
+                <div class="p-6 border-t bg-white flex gap-3">
+                    <input id="chat-input" type="text" placeholder="Напишите вашу нишу..." class="flex-1 bg-slate-100 border-none rounded-2xl px-5 py-3 outline-none focus:ring-2 focus:ring-blue-600 transition">
+                    <button onclick="sendMessage()" class="bg-blue-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg hover:bg-blue-700 transition active:scale-95"><i data-lucide="send" class="w-5 h-5"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="p-4 bg-white border-t border-slate-100 flex gap-2">
-                <input id="chat-input" type="text" placeholder="Ваш вопрос..." class="flex-1 bg-slate-100 border-none rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
-                <button onclick="sendMessage()" class="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition">
-                    <i data-lucide="send"></i>
+    <section class="py-24 px-6 bg-slate-900 text-white text-center" id="offer">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-black mb-8 uppercase italic leading-none">Оффер «Деньги с пола» 💸</h2>
+            <p class="text-xl text-slate-400 mb-12">
+                Мы за 14 дней запускаем ИИ-связку. Если через месяц количество записей не вырастет на 30% — возвращаем 100% стоимости внедрения. Без вопросов.
+            </p>
+            <div class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md">
+                <p class="text-sm text-slate-500 uppercase font-bold tracking-widest mb-4">Для бизнесов в Воронеже</p>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 rounded-2xl font-black text-2xl shadow-2xl transition transform hover:scale-105 active:scale-95">
+                    Запустить тест
                 </button>
             </div>
         </div>
+    </section>
 
-        <button onclick="toggleChat()" class="bg-blue-600 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-transform active:scale-95">
-            <i data-lucide="message-circle" class="w-8 h-8"></i>
-        </button>
-    </div>
+    <footer class="py-12 text-center text-slate-400 text-xs uppercase tracking-[0.2em] font-bold">
+        <p>© 2026 Внедрение ИИ-решений. Воронеж • Революции 1905 года</p>
+    </footer>
 
     <script>
-        // Инициализация иконок
         lucide.createIcons();
-
-        const chatWindow = document.getElementById('chat-window');
         const chatMessages = document.getElementById('chat-messages');
         const chatInput = document.getElementById('chat-input');
         
-        // История из LocalStorage
-        let messages = JSON.parse(localStorage.getItem('chat_history')) || [
-            { role: 'assistant', text: 'Привет! Я помогаю воронежским предпринимателям не терять бабки на пропущенных заявках. Какая у тебя ниша — салон, автосервис или клиника? 😎' }
+        // История из LocalStorage для эффекта "памяти" [cite: 172]
+        let messages = JSON.parse(localStorage.getItem('vrn_chat')) || [
+            { role: 'assistant', text: 'Привет, земляк! 👋 Я помогаю бизнесу в Воронеже не терять клиентов. Какая у тебя ниша — стоматология, автосервис или салон красоты? Напиши, посчитаем потери.' }
         ];
-
-        function toggleChat() {
-            chatWindow.classList.toggle('hidden');
-            renderMessages();
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
 
         function renderMessages() {
             chatMessages.innerHTML = '';
             messages.forEach(msg => {
                 const div = document.createElement('div');
                 div.className = msg.role === 'assistant' 
-                    ? 'self-start bg-white border border-slate-200 p-3 rounded-2xl rounded-tl-none max-w-[85%] shadow-sm'
-                    : 'self-end bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] shadow-sm';
+                    ? 'self-start bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-200 max-w-[85%]'
+                    : 'self-end bg-blue-600 text-white p-4 rounded-2xl rounded-tr-none shadow-sm max-w-[85%]';
                 div.innerText = msg.text;
                 chatMessages.appendChild(div);
             });
-            localStorage.setItem('chat_history', JSON.stringify(messages));
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            localStorage.setItem('vrn_chat', JSON.stringify(messages));
         }
 
-        async function sendMessage() {
+        function sendMessage() {
             const text = chatInput.value.trim();
             if (!text) return;
-
             messages.push({ role: 'user', text });
             chatInput.value = '';
             renderMessages();
-            chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Имитация ответа (здесь будет fetch к твоему n8n или Cloudflare Worker)
+            // Имитация воронежского "своего парня" [cite: 178, 185]
             setTimeout(() => {
-                messages.push({ role: 'assistant', text: 'Понял тебя. Давай по-чесноку: сколько заявок в день сейчас падает? Посчитаю, сколько ты "даришь" конкурентам. 📈' });
+                messages.push({ role: 'assistant', text: 'Понял тебя. В твоей нише в Воронеже сейчас средний чек 5-20к. Если админ не ответил за 1 минуту — клиент ушел. Давай номер WhatsApp, скину расчет в Excel, сколько ты на этом теряешь за месяц? По-чесноку всё увидишь. 😎' });
                 renderMessages();
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 1000);
+            }, 1200);
         }
 
-        // Отправка по Enter
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-
-        // Первая отрисовка
+        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
         renderMessages();
     </script>
 </body>
