@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автоматизация заявок в Воронеже | Цифровой Администратор</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .chat-container { height: 400px; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <section class="min-h-screen flex flex-col items-center justify-center px-6 py-20 text-center">
+        <div class="max-w-3xl">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+                Хватит терять клиентов в <span class="text-blue-600">Воронеже</span> из-за долгого ответа
+            </h1>
+            <p class="text-xl text-slate-600 mb-10 leading-relaxed">
+                Ставим "умный автоответчик" для вашего бизнеса. Отвечает за 1 минуту, квалифицирует лидов и записывает их сразу в CRM. 
+                Просто. Быстро. По-чесноку. 😎
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="toggleChat()" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition shadow-lg">
+                    Попробовать демо-бота
+                </button>
+                <a href="#features" class="bg-white border border-slate-200 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition">
+                    Как это работает?
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div id="chat-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="chat-window" class="hidden w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-slate-100 flex flex-col mb-4 overflow-hidden">
+            <div class="bg-blue-600 p-4 text-white flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <i data-lucide="bot"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold leading-none">ИИ-Администратор</p>
+                        <p class="text-xs text-blue-100 mt-1">В сети • Отвечает мгновенно</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="hover:bg-blue-500 p-1 rounded">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <div id="chat-messages" class="chat-container overflow-y-auto p-4 flex flex-col gap-3 text-sm bg-slate-50">
+                </div>
+
+            <div class="p-4 bg-white border-t border-slate-100 flex gap-2">
+                <input id="chat-input" type="text" placeholder="Ваш вопрос..." class="flex-1 bg-slate-100 border-none rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                <button onclick="sendMessage()" class="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition">
+                    <i data-lucide="send"></i>
+                </button>
+            </div>
+        </div>
+
+        <button onclick="toggleChat()" class="bg-blue-600 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-transform active:scale-95">
+            <i data-lucide="message-circle" class="w-8 h-8"></i>
+        </button>
+    </div>
+
+    <script>
+        // Инициализация иконок
+        lucide.createIcons();
+
+        const chatWindow = document.getElementById('chat-window');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        
+        // История из LocalStorage
+        let messages = JSON.parse(localStorage.getItem('chat_history')) || [
+            { role: 'assistant', text: 'Привет! Я помогаю воронежским предпринимателям не терять бабки на пропущенных заявках. Какая у тебя ниша — салон, автосервис или клиника? 😎' }
+        ];
+
+        function toggleChat() {
+            chatWindow.classList.toggle('hidden');
+            renderMessages();
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function renderMessages() {
+            chatMessages.innerHTML = '';
+            messages.forEach(msg => {
+                const div = document.createElement('div');
+                div.className = msg.role === 'assistant' 
+                    ? 'self-start bg-white border border-slate-200 p-3 rounded-2xl rounded-tl-none max-w-[85%] shadow-sm'
+                    : 'self-end bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] shadow-sm';
+                div.innerText = msg.text;
+                chatMessages.appendChild(div);
+            });
+            localStorage.setItem('chat_history', JSON.stringify(messages));
+        }
+
+        async function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            messages.push({ role: 'user', text });
+            chatInput.value = '';
+            renderMessages();
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Имитация ответа (здесь будет fetch к твоему n8n или Cloudflare Worker)
+            setTimeout(() => {
+                messages.push({ role: 'assistant', text: 'Понял тебя. Давай по-чесноку: сколько заявок в день сейчас падает? Посчитаю, сколько ты "даришь" конкурентам. 📈' });
+                renderMessages();
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+
+        // Отправка по Enter
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        // Первая отрисовка
+        renderMessages();
+    </script>
+</body>
+</html>
